@@ -1,1 +1,1 @@
-curl -X POST $1 $2 $3
+curl -X POST -H "HOST: $1" $2 -d $3
