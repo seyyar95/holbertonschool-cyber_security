@@ -1,1 +1,1 @@
-tcp.window_size <= 1024
+tcp.flags == 1 and tcp.window_size <= 1024
