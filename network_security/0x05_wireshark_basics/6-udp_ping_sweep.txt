@@ -1,1 +1,1 @@
-upd.dstport == 8
+udp.dstport == 8
