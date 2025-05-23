@@ -6,7 +6,7 @@ if [[ "$input" == "{xor}"* ]]; then
 	input="${input#\{xor\}}"
 fi
 
-decodedB64=$(echo "$input" | base64 -d 2>/dev/null)
+decodedB64=$(echo "$input" | base64 -d 2>/dev/null | tr -d '\0')
 
 result=""
 for ((i=0; i < ${#decodedB64}; i++))
