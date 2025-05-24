@@ -3,17 +3,14 @@
 input="$1"
 
 if [[ "$input" == "{xor}"* ]]; then
-	input="${input#\{xor\}}"
+    input="${input#'{xor}'}"
 fi
 
-decodedB64=$(echo "$input" | base64 -d 2>/dev/null | tr -d '\0')
+python3 -c "
+import base64
+import sys
 
-result=""
-for ((i=0; i < ${#decodedB64}; i++))
-do
-	char_code="${decodedB64:$i:1}"
-	decrypted_char=$(( $(printf "%d" "'$char_code") ^ 95))
-	result+=$(printf "\\$(printf '%03o' $decrypted_char)")
-done
-
-echo "$result"
+data = base64.b64decode('$input')
+decoded = ''.join(chr(b ^ 95) for b in data)
+print(decoded)
+"
