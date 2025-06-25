@@ -1,2 +1,2 @@
 #!/bin/bash
-hashcat -a 1 -m 0 $1 $2 --stdout
+hashcat -a 1 $1 $2 --stdout
