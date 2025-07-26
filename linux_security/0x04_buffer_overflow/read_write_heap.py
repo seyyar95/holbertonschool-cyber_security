@@ -86,7 +86,7 @@ def main():
         pid = sys.argv[1]
         search_bytes = sys.argv[2].encode()
         replacement_bytes = sys.argv[3]\
-                .encode().ljust(len(search_bytes), b'\x00')
+            .encode().ljust(len(search_bytes), b'\x00')
 
         heap_start, heap_end = get_heap_bounds(pid)
         heap_data = read_heap_memory(pid, heap_start, heap_end)
