@@ -8,7 +8,8 @@ import sys
 
 def get_heap_bounds(pid):
     """
-    Retrieve the start and end addresses of the heap segment for a given process.
+    Retrieve the start and end addresses of the heap segment
+    for a given process.
 
     Args:
         pid (str): Process ID.
@@ -84,8 +85,8 @@ def main():
     try:
         pid = sys.argv[1]
         search_bytes = sys.argv[2].encode()
-        replacement_bytes = sys.argv[3].encode().\
-                ljust(len(search_bytes), b'\x00')
+        replacement_bytes = sys.argv[3]\
+                .encode().ljust(len(search_bytes), b'\x00')
 
         heap_start, heap_end = get_heap_bounds(pid)
         heap_data = read_heap_memory(pid, heap_start, heap_end)
