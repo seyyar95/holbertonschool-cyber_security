@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+A script that reads and writes to heap
+"""
+
 import sys
 
 def get_heap_bounds(pid):
