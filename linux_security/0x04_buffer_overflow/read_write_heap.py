@@ -5,6 +5,7 @@ A script that reads and writes to heap
 
 import sys
 
+
 def get_heap_bounds(pid):
     """
     Retrieve the start and end addresses of the heap segment for a given process.
@@ -30,6 +31,7 @@ def get_heap_bounds(pid):
         print(f"Exception in get_heap_bounds: {e}")
         sys.exit(1)
 
+
 def read_heap_memory(pid, start_addr, end_addr):
     """
     Read the contents of a process's heap memory.
@@ -50,6 +52,7 @@ def read_heap_memory(pid, start_addr, end_addr):
         print(f"Exception in read_heap_memory: {e}")
         sys.exit(1)
 
+
 def write_to_heap(pid, target_addr, data):
     """
     Write data to a specific address in the process's heap.
@@ -67,19 +70,22 @@ def write_to_heap(pid, target_addr, data):
         print(f"Exception in write_to_heap: {e}")
         sys.exit(1)
 
+
 def main():
     """
     Main function to locate a string in the heap of a running process
     and replace it with another string of equal or shorter length.
     """
     if len(sys.argv) != 4:
-        print('Usage: read_write_heap.py <pid> <search_string> <replace_string>')
+        print('Usage: read_write_heap.py <pid>\
+                <search_string> <replace_string>')
         sys.exit(1)
 
     try:
         pid = sys.argv[1]
         search_bytes = sys.argv[2].encode()
-        replacement_bytes = sys.argv[3].encode().ljust(len(search_bytes), b'\x00')
+        replacement_bytes = sys.argv[3].encode().\
+                ljust(len(search_bytes), b'\x00')
 
         heap_start, heap_end = get_heap_bounds(pid)
         heap_data = read_heap_memory(pid, heap_start, heap_end)
@@ -95,6 +101,6 @@ def main():
         print(f"Exception in main: {e}")
         sys.exit(1)
 
+
 if __name__ == "__main__":
     main()
-
