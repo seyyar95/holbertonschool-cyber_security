@@ -1,2 +1,2 @@
 #!/bin/bash
-grep -i 'server' > dmesg
+cat dmesg | grep -i "server"
