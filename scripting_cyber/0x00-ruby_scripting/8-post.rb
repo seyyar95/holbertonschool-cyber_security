@@ -10,8 +10,7 @@ def post_request(url, body_params)
 
   Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == 'https') do |http|
     response = http.request(request)
-    body = JSON.parse(response.body)
     puts "Response status: #{response.code} #{response.message}"
-    puts "Response body:\n#{JSON.pretty_generate(body)}"
+    puts "Response body:\n#{response.body}"
   end
 end
