@@ -2,8 +2,8 @@
 require 'net/http'
 
 def get_request(url)
-  url = URI.parse(url)
-  req = Net::HTTP::Get.new(url.to_s)
-  res = Net::HTTP.start(url.host, url.port) { | http | http.request(req)}
+  uri = URI.parse(url)
+  req = Net::HTTP::Get.new(uri.to_s)
+  res = Net::HTTP.start(uri.host, uri.port) { | http | http.request(req)}
   puts "Response status: #{res.code} OK\nResponse body: #{res.body}"
 end
